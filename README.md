@@ -10,6 +10,7 @@ BrainOn은 출혈성 병변(CT), 허혈성 병변(MRI DWI·ADC), 뇌동맥류(MR
 | --- | --- |
 | 프로젝트 | BrainOn — Stroke Clinical Decision Support System |
 | 참여 형태 | 3인 팀 프로젝트 |
+| 담당 역할 | 팀 리드 · AI 모델 개발 및 성능 평가 · 모델 연계 조정 |
 | 주요 분야 | Medical Image Segmentation, Lesion Detection, Model Evaluation |
 | 기술 | Python, PyTorch, nnU-Net, MONAI, MLflow, Google Cloud Storage |
 
@@ -17,6 +18,16 @@ BrainOn은 출혈성 병변(CT), 허혈성 병변(MRI DWI·ADC), 뇌동맥류(MR
 > 본 시스템은 의료인의 판단을 보조하기 위한 연구 결과이며, 독립적인 임상 진단 또는 치료 결정에 사용하도록 검증된 의료기기가 아닙니다.
 
 ---
+
+## About This Repository
+
+이 저장소는 3인 팀 프로젝트 **BrainOn**의 AI 모델 저장소를 바탕으로, **김호영의 모델 개발·실험·성능 평가 기여를 정리한 개인 포트폴리오**입니다.
+
+- **팀 원본 저장소:** [brainCDSS/model](https://github.com/brainCDSS/model)
+- **개인 포트폴리오:** [duddl6292/BrainOn-AI](https://github.com/duddl6292/BrainOn-AI)
+- **개인 기여 상세:** [My Contributions](#3-my-contributions)
+
+기존 개발 이력과 팀 공동 작업의 출처를 유지하며, 아래 성과와 개인 기여 범위를 함께 기록합니다.
 
 ## 1. Key Results
 
@@ -69,9 +80,9 @@ BrainOn은 출혈성 병변(CT), 허혈성 병변(MRI DWI·ADC), 뇌동맥류(MR
 
 #### Evidence / Code
 
-- [T01 vs T02 lesion-level selection notebook](https://github.com/brainCDSS/model/blob/main/notebooks/hy/notebooks/25_T01_T02_lesion_level_final_selection.ipynb)
-- [H-T01-E300 experiment configuration](https://github.com/brainCDSS/model/blob/main/configs/experiments/hemorrhage/tuning/H-T01-E300.yaml)
-- [Hemorrhage experiments](https://github.com/brainCDSS/model/tree/main/configs/experiments/hemorrhage)
+- [T01 vs T02 lesion-level selection notebook](./notebooks/hy/notebooks/25_T01_T02_lesion_level_final_selection.ipynb)
+- [H-T01-E300 experiment configuration](./configs/experiments/hemorrhage/tuning/H-T01-E300.yaml)
+- [Hemorrhage experiments](./configs/experiments/hemorrhage)
 
 ---
 
@@ -99,9 +110,9 @@ Validation에서 정한 Threshold를 고정한 후 별도의 Test 데이터에�
 
 #### Evidence / Code
 
-- [I-E01 Soft-Voting experiment notebook](https://github.com/brainCDSS/model/blob/main/notebooks/hy/Ischemic/06_I-E01_N120_S101_SoftVoting.ipynb)
-- [Ischemia experiment configurations](https://github.com/brainCDSS/model/tree/main/configs/experiments/ischemia)
-- [Ensemble evaluation code](https://github.com/brainCDSS/model/blob/main/scripts/ischemia/ensemble/evaluate_soft_voting.py)
+- [I-E01 Soft-Voting experiment notebook](./notebooks/hy/Ischemic/06_I-E01_N120_S101_SoftVoting.ipynb)
+- [Ischemia experiment configurations](./configs/experiments/ischemia)
+- [Ensemble evaluation code](./scripts/ischemia/ensemble/evaluate_soft_voting.py)
 
 ---
 
@@ -124,13 +135,25 @@ MRA 영상에서 뇌동맥류 병변을 분할하기 위해 nnU-Net 기반 모�
 
 #### Evidence / Code
 
-- [A-B04 experiment notebook](https://github.com/brainCDSS/model/blob/main/notebooks/hy/aneurysm_binary/04_A-B04_focal_tversky_baseline_sampling.ipynb)
-- [A-B04 experiment configuration](https://github.com/brainCDSS/model/blob/main/configs/experiments/aneurysm_binary/A-B04.yaml)
-- [A-B04 evaluation code](https://github.com/brainCDSS/model/blob/main/scripts/aneurysm_binary/validation/evaluate_a_b04_neighborhood.py)
+- [A-B04 experiment notebook](./notebooks/hy/aneurysm_binary/04_A-B04_focal_tversky_baseline_sampling.ipynb)
+- [A-B04 experiment configuration](./configs/experiments/aneurysm_binary/A-B04.yaml)
+- [A-B04 evaluation code](./scripts/aneurysm_binary/validation/evaluate_a_b04_neighborhood.py)
 
 ---
 
-## 3. Development Workflow
+## 3. My Contributions
+
+3인 팀 프로젝트에서 **팀 리드와 AI 모델 개발·평가**를 중심으로 참여했습니다.
+
+- **실험 설계 및 평가:** CT·MRI·MRA 모델별 실험 설정과 결과를 비교하고, Dice 외에 탐지율·오탐·병변 크기별 성능을 함께 분석했습니다.
+- **의료영상 데이터 QA:** 영상·라벨 정합성, intensity 분포, NaN 및 이상값 등을 점검하여 학습 전 데이터 품질을 검증했습니다.
+- **모델 선정 의사결정:** CT에서 성능 차이가 작은 후보들 사이의 미탐·오탐 상충관계를 분석하고 최종 모델 선정 근거를 정리했습니다.
+- **실험 및 릴리스 관리:** MLflow 실험 이력, 버전별 모델 아티팩트, GCS 기반 릴리스 및 추론 서비스 연계 과정에 참여했습니다.
+- **팀 협업:** 개발 일정·역할·모델 연계 이슈를 조율했습니다.
+
+> 팀 프로젝트의 전체 성과와 개인 기여를 구분하여 기록했습니다. 기능별 상세 기여 범위는 관련 코드·실험 기록을 함께 참고해 주세요.
+
+## 4. Development Workflow
 
 1. **Data Preparation**  
    공개 의료영상 데이터셋 확인 및 학습용 구성
@@ -154,7 +177,7 @@ MRA 영상에서 뇌동맥류 병변을 분할하기 위해 nnU-Net 기반 모�
 
 ---
 
-## 4. Repository Guide
+## 5. Repository Guide
 
 | Path | Purpose |
 | --- | --- |
@@ -168,7 +191,34 @@ MRA 영상에서 뇌동맥류 병변을 분할하기 위해 nnU-Net 기반 모�
 
 ---
 
-## 5. Limitations & Future Work
+## 6. Quick Start (Developers)
+
+Python **3.11** 환경을 권장합니다. CUDA 환경에서는 현재 시스템과 호환되는 **PyTorch를 별도로 설치**한 뒤 프로젝트 패키지를 설치하세요.
+
+```bash
+git clone https://github.com/duddl6292/BrainOn-AI.git
+cd BrainOn-AI
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev,notebook,storage]"
+
+# 외부 의료영상 데이터 없이 실행 가능한 점검
+brainon data make-synthetic --task all
+brainon smoke-test --task all
+pytest -q
+```
+
+Windows PowerShell에서는 가상환경 생성·활성화를 다음과 같이 수행할 수 있습니다.
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+실제 CT·MRI·MRA 학습 및 평가에는 별도 데이터셋 준비와 프로젝트 설정이 필요합니다. 전체 CLI 명령과 배포 관련 세부 사항은 [개발 문서](./docs)를 확인해 주세요.
+
+## 7. Limitations & Future Work
 
 - **False negatives vs. false positives**  
   병변 미탐을 줄이기 위한 설정은 오탐을 늘릴 수 있어, 임상 목적에 맞춘 운영 임계값과 후처리 전략이 필요합니다.
@@ -181,3 +231,7 @@ MRA 영상에서 뇌동맥류 병변을 분할하기 위해 nnU-Net 기반 모�
 
 - **Evaluation consistency**  
   병변 매칭(최소 겹침 기준·일대일 매칭 여부), 계산 단위(voxel/lesion), 지표 평균 방식 및 데이터 분할을 일관되게 관리할 필요가 있습니다.
+
+---
+
+**Acknowledgment:** 본 프로젝트는 팀원들의 공동 개발 결과이며, nnU-Net·MONAI 등 공개 연구 소프트웨어를 기반으로 수행한 실험을 포함합니다. 팀 원본은 [brainCDSS/model](https://github.com/brainCDSS/model)에서 확인할 수 있으며, 데이터셋과 사용한 원본 연구의 출처·라이선스는 각 데이터 및 구현 문서를 따릅니다.
